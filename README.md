@@ -1,4 +1,4 @@
-Simple Shell Holberton Project
+<img src="https://i.postimg.cc/26vkFX6d/Holberton-Shell.jpg" width="1050" height="120">
 
 <a href="https://github.com/444sami"> <strong>Samara González</strong>, </a>
 <a href="https://github.com/Pablo-Laborde"> <strong>Pablo Laborde</strong> </a>
