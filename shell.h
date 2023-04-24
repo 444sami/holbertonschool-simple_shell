@@ -22,7 +22,15 @@ typedef struct word_list
 	struct word_list *next;
 } wl_t;
 
+
 /* Prototypes */
+
+/* _simple_shell.c */
+int main(int ac, char **av, char **env);
+void interactive_mode(int mode, int ac, char **av, char **env);
+
+/* aux_func.c */
+char **cmd_to_arg(void);
 
 /* wl_man.c */
 wl_t *create_list(char *str);
