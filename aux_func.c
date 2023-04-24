@@ -13,7 +13,7 @@ char **cmd_to_arg(void)
 	char	buff[buffsize], **cmds;
 	wl_t	*l, *aux;
 
-	len = read(0, buff, buffsize);
+	len = read(STDIN_FILENO, buff, buffsize);
 	if (len == -1)
 		return (NULL);
 	l = create_list(buff);
