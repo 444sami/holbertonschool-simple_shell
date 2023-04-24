@@ -36,16 +36,3 @@ char **cmd_to_arg(void)
 	free_list(l, 0);
 	return (cmds);
 }
-
-int main(void)
-{
-	write(1, "$ ", 2);
-	char **cmds = cmd_to_arg();
-	int i = 0;
-	while (cmds[i])
-	{
-		printf("%s\n", cmds[i]);
-		i++;
-	}
-	return (0);
-}
