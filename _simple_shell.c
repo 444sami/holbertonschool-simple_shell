@@ -1,8 +1,5 @@
 #include "shell.h"
 
-#include <stdio.h>
-#include <string.h>
-
 /**
  * main- runs the shell
  * @ac: amount of arguments
@@ -10,31 +7,24 @@
  * @env: environment variables
  * Return: 0 on success, non-zero otherwise
  */
-int main(int ac, char**av, char **env)
+int main(void)
 {
-	if (ac == 1)
-		interactive_mode(1, 0, NULL, env);
-	else
-		interactive_mode(0, ac , &(av[1]), env);
-	return (0);
-}
+	int	mode;
+	char	**cmds = NULL;
+	extern char **environ;
 
-/**
- * interactive_mode- activates the interactive mode
- * @mode: indicates if the mode is interactive or one run only
- * @ac: amount of arguments for non interactive mode
- * @av: list of arguments for non interactive mode
- * @env: encironment variables
- * Return: void
- */
-void interactive_mode(int mode, int ac, char **av, char **env)
-{
-	char **cmds= NULL;
-
+	mode = isatty(STDIN_FILENO);
 	do {
-		write(1, "$ ", 2);
-		cmds = (mode) ? cmd_to_arg() : av;
-		if (strcmp(cmds[0], "exit") == 0)
-			break;
+		if (mode)
+			write(STDOUT_FILENO, "$ ", 2);
+		cmds = cmd_to_arg();
+		if (cmds)
+		{
+			if (strcmp(cmds[0], "exit") == 0)
+				break;
+			if (!access(cmds[0], F_OK))
+				execve(cmds[0], cmds, environ);
+		}
 	} while (mode);
+	return (0);
 }
