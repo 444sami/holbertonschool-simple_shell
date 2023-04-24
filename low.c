@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "low.h"
 
 /**
  * create_list- creates a list of words
@@ -73,7 +73,7 @@ int words_counter(wl_t *l)
 {
 	if (!l)
 		return (0);
-	if (l)
+	else
 		return (1 + words_counter(l->next));
 }
 
