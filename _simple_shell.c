@@ -9,7 +9,7 @@
  */
 int main(void)
 {
-	int	mode;
+	int	mode, wstatus;
 	char	**cmds = NULL;
 	extern char **environ;
 
@@ -23,7 +23,12 @@ int main(void)
 			if (strcmp(cmds[0], "exit") == 0)
 				break;
 			if (!access(cmds[0], F_OK))
-				execve(cmds[0], cmds, environ);
+			{
+				if (!mode || ((fork()) ? (!wait(&wstatus)) : 1))
+					execve(cmds[0], cmds, environ);
+			}
+			else
+				printf("./shell: %s: No such file or directory\n", cmds[0]);
 		}
 	} while (mode);
 	return (0);
