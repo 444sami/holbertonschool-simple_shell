@@ -24,7 +24,7 @@ char **cmd_to_arg(void)
 	if (!cmds)
 	{
 		free_list(l, 1);
-		return(NULL);
+		return (NULL);
 	}
 	aux = l;
 	for (i = 0; i < wc; i++)
