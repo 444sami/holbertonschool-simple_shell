@@ -36,3 +36,20 @@ char **cmd_to_arg(void)
 	free_list(l, 0);
 	return (cmds);
 }
+
+/**
+ * free_cmds- frees the commands
+ * @cmds: list of commands
+ * Return: void
+ */
+void free_cmds(char **cmds)
+{
+	int	i;
+
+	if (cmds)
+	{
+		for (i = 0; cmds[i]; i++)
+			free(cmds[i]);
+		free(cmds);
+	}
+}
