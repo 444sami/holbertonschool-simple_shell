@@ -1,5 +1,5 @@
 #include "shell.h"
-#include <stdio.h>
+
 #define buffsize 4096
 
 /**
