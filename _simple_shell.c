@@ -7,12 +7,13 @@
  * @env: environment variables
  * Return: 0 on success, non-zero otherwise
  */
-int main(void)
+int main(int ac, char **av, char**env)
 {
 	int	mode, wstatus;
 	char	**cmds = NULL;
-	extern char **environ;
 
+	(void)ac;
+	(void)av;
 	mode = isatty(STDIN_FILENO);
 	do {
 		if (mode)
@@ -22,11 +23,8 @@ int main(void)
 		{
 			if (strcmp(cmds[0], "exit") == 0)
 				break;
-			if (!access(cmds[0], F_OK))
-			{
-				if (!mode || ((fork()) ? (!wait(&wstatus)) : 1))
-					execve(cmds[0], cmds, environ);
-			}
+			if (!access(cmds[0], F_OK) && (!mode || ((fork()) ? (!wait(&wstatus)) : 1)))
+					execve(cmds[0], cmds, env);
 			else
 				printf("./shell: %s: No such file or directory\n", cmds[0]);
 		}
