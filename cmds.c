@@ -44,12 +44,16 @@ char **cmd_to_arg(void)
  */
 void free_cmds(char **cmds)
 {
-	int	i;
+	int	i = 0;
 
 	if (cmds)
 	{
-		for (i = 0; cmds[i]; i++)
+		while (cmds[i] != NULL)
+		{
 			free(cmds[i]);
+			i++;
+		}
+		free(cmds[i]);
 		free(cmds);
 	}
 }
