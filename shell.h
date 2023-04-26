@@ -2,10 +2,10 @@
 #define SHELL_H
 
 /*---->    Included Libraries    <----*/
-#include <sys/types.h>
-#include <sys/stat.h>
+#include <sys/wait.h>
 
 #include <unistd.h>
+#include <errno.h>
 
 #include <stdio.h>
 #include <stdlib.h>
