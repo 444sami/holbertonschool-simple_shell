@@ -32,9 +32,9 @@ int main(int ac, char **av, char **environ)
 			}
 			else
 				err_han(av[0], cmds[0]);
-			free_cmds(cmds);
+			cmds = free_cmds(cmds);
 		}
 	} while (mode);
-	free_cmds(cmds);
+	cmds = free_cmds(cmds);
 	return (0);
 }
