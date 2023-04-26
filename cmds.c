@@ -40,9 +40,9 @@ char **cmd_to_arg(void)
 /**
  * free_cmds- frees the commands
  * @cmds: list of commands
- * Return: void
+ * Return: NULL
  */
-void free_cmds(char **cmds)
+char **free_cmds(char **cmds)
 {
 	int	i = 0;
 
@@ -56,4 +56,5 @@ void free_cmds(char **cmds)
 		free(cmds[i]);
 		free(cmds);
 	}
+	return (NULL);
 }
