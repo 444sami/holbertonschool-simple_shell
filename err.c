@@ -8,6 +8,7 @@
  */
 void err_han(char *s1, char *s2)
 {
+	(void)s1;
 	(void)s2;
-	fprintf(stderr, "%s: No such file or directory\n", s1);
+	perror("./hsh");
 }
