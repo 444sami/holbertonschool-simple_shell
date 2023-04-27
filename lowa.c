@@ -3,18 +3,19 @@
 /**
  * create_list- creates a list of words
  * @str: the string which contains the words
+ * @pos: position to start
  * Return: a pointer to the list
  */
-wl_t *create_list(char *str)
+l_node *create_list(char *str, int *pos)
 {
-	int	pos = 0, f, i;
-	wl_t	*l = NULL, *aux = NULL, *aux2 = NULL;
+	int	p = *pos, f, i;
+	l_node	*l = NULL, *aux = NULL, *aux2 = NULL;
 
 	if (!str)
 		return (NULL);
-	while (str[pos])
+	while (str[p] != '\n' && str[p] != '\0')
 	{
-		if (str[pos] > 32)
+		if (str[p] > 32)
 		{
 			aux = malloc(sizeof(wl_t));
 			if (!aux)
@@ -25,15 +26,15 @@ wl_t *create_list(char *str)
 				aux2->next = aux;
 				aux2 = aux2->next;
 			}
-			f = pos;
+			f = p;
 			while (str[f] > 32)
 				f++;
-			aux->len = f - pos + 1;
+			aux->len = f - p + 1;
 			aux->word = malloc(sizeof(char) * aux->len);
 			if (!aux->word)
 				return (free_list(l, 1));
-			for (i = 0; pos < f; i++, pos++)
-				aux->word[i] = str[pos];
+			for (i = 0; p < f; i++, p++)
+				aux->word[i] = str[p];
 			aux->word[i] = '\0';
 			if (!l)
 			{
@@ -41,7 +42,8 @@ wl_t *create_list(char *str)
 				aux2 = l;
 			}
 		}
-		pos++;
+		p++;
 	}
+	*pos = p;
 	return (l);
 }

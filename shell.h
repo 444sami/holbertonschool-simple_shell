@@ -25,18 +25,18 @@ typedef struct word_list
 	char *word;
 	int len;
 	struct word_list *next;
-} wl_t;
+} l_node;
 
 
 /*---->     Prototypes     <----*/
 
 /* _simple_shell.c */
 int main(int ac, char **av, char **env);
-int check_builtin(char **cmds);
+int check_builtin(char ***cmds, int pos);
 
 /* aux_func.c */
-char **cmd_to_arg(void);
-char **free_cmds(char **cmds);
+char ***cmd_to_arg(void);
+char ***free_cmds(char ***cmds);
 
 /* err.c */
 void err_han(char *s1, char *s2);
@@ -45,10 +45,12 @@ void err_han(char *s1, char *s2);
 void exit(int val);
 void print_env(char **env);
 
-/* low.c */
-wl_t *create_list(char *str);
-void *free_list(wl_t *l, int flag);
-int words_counter(wl_t *l);
-void print_list(wl_t *l);
+/* lowa.c */
+l_node *create_list(char *str, int *pos);
+
+/* lowb.c */
+void *free_list(l_node *l, int flag);
+int words_counter(l_node *l);
+void print_list(l_node *l);
 
 #endif

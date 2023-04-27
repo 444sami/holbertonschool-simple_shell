@@ -6,7 +6,7 @@
  * @flag: if 0 does't free words, frees otherwise
  * Return: null
  */
-void *free_list(wl_t *l, int flag)
+void *free_list(l_node *l, int flag)
 {
 	if (l)
 	{
@@ -23,7 +23,7 @@ void *free_list(wl_t *l, int flag)
  * @l: list of words
  * Return: the amount of words
  */
-int words_counter(wl_t *l)
+int words_counter(l_node *l)
 {
 	if (!l)
 		return (0);
@@ -36,7 +36,7 @@ int words_counter(wl_t *l)
  * @l: list of words
  * Return: void
  */
-void print_list(wl_t *l)
+void print_list(l_node *l)
 {
 	if (l)
 	{
