@@ -8,7 +8,5 @@
  */
 void err_han(char *s1, char *s2)
 {
-	(void)s1;
-	(void)s2;
-	perror("./hsh");
+	fprintf(stderr, "%s: %s: command not found\n", s1, s2);
 }
