@@ -54,14 +54,15 @@ hsh main.c shell.c test_ls_2
 $</code></pre></p>
  <h2>
         <strong>Flowchart</strong>
-        <img></img>
 </h2>
+<p><img src="https://i.postimg.cc/qR8b3W1B/Shell-Flowchart-1.jpg" width="779" height="751"></p>
  <h2>
         <strong>List of files</strong>
  </h2>
  <p>Files we created for this project:
 
 * Documentation: README.md, man_1_simple_shell, AUTHORS.
-* Auxiliar functions:</p>
+* Shell: _simple_shell.c
+* Auxiliar functions: </p>
 <hr>
 Samara González, Pablo Laborde. Cohort 20.
