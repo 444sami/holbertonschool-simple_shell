@@ -31,7 +31,8 @@ typedef struct word_list
 /*---->     Prototypes     <----*/
 
 /* _simple_shell.c */
-int main(int ac, char **av, char **envron);
+int main(int ac, char **av, char **env);
+int check_builtin(char **cmds);
 
 /* aux_func.c */
 char **cmd_to_arg(void);
@@ -41,6 +42,8 @@ char **free_cmds(char **cmds);
 void err_han(char *s1, char *s2);
 
 /* built_in.c */
+void exit(int val);
+void print_env(char **env);
 
 /* low.c */
 wl_t *create_list(char *str);
