@@ -23,8 +23,8 @@
  */
 typedef struct word_list
 {
-        char *word;
-        struct word_list *next;
+	char *word;
+	struct word_list *next;
 } l_node;
 
 
