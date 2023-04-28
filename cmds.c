@@ -14,7 +14,7 @@ l_node *cmds_inter()
 
 	for (i = 0; i < buffsize; i++)
 		buf[i] = '\0';
-	read(0, buf, buffsize);
+	read(STDIN_FILENO, buf, buffsize);
 	l = command_str(buf);
 	return (l);
 }
