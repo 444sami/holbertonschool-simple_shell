@@ -18,7 +18,6 @@
 /**
  * struct word_list- a list of words
  * @word: the word
- * @len: words length
  * @next: next word
  */
 typedef struct word_list

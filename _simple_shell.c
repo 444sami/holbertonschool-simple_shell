@@ -47,14 +47,14 @@ int main(int ac, char **av, char **env)
  * exe_cmd- executes the command passed
  * @cmd: command
  * @mode: interactive or not
- * @wstatus for wait function
+ * @wstatus: for wait function
  * @env: environ
  * Return: void
  */
 void exe_cmd(char **cmd, int mode, int *wstatus, char **env)
 {
 	if (cmd)
-		if(!access(cmd[0], F_OK))
+		if (!access(cmd[0], F_OK))
 		{
 			if (!mode || ((fork()) ? (!wait(wstatus)) : 1))
 				execve(cmd[0], cmd, env);
