@@ -30,6 +30,10 @@ typedef struct word_list
 
 /*---->     Prototypes     <----*/
 
+/* _simple_shell.c */
+int main(int ac, char **av, char **env);
+void exe_cmd(char **cmd, int mode, int *wstatus, char **env);
+
 /* cmds.c */
 l_node *cmds_inter();
 char **args_arr(l_node *l);
