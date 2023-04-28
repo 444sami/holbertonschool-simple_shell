@@ -1,6 +1,6 @@
 #include "shell.h"
 
-#define buffsize 4096
+#define buffsize 8192
 
 /**
  * cmds_inter- reads input andtrans forms it into a list
