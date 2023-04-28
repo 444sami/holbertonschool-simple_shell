@@ -4,8 +4,21 @@ PROLOG | NAME | SYNOPSIS | DESCRIPTION | OPTIONS | OPERANDS | STDIN | INPUT FILE
 
 HSH			--> Programmer's Manual <--			HSH
 
+PROLOG
 
+	This manual page is for a Holberton School project "Basic shell" that is about building your own command interpreter
 
+NAME
+
+	hsh - holberton shell, command language interpreter
+
+SYNOPSIS
+
+	./hsh
+
+DESCRIPTION
+
+	The hsh utility is a command language interpreter that sall execute commands read from a command line string or a specified file
 
 OPTIONS
 
