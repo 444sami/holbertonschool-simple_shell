@@ -32,7 +32,7 @@ int main(int ac, char **av, char **env)
 				if (flag)
 					print_args(cmd);
 				flag = 0;
-/*				exe_cmd(cmd, mode, &wstatus, env);*/
+				exe_cmd(cmd, mode, &wstatus, env);
 				free_args(cmd);
 				aux = aux->next;
 			}
@@ -43,6 +43,12 @@ int main(int ac, char **av, char **env)
 }
 
 /**
+ * exe_cmd- executes the command passed
+ * @cmd: command
+ * @mode: interactive or not
+ * @wstatus for wait function
+ * @env: environ
+ * Return: void
  */
 void exe_cmd(char **cmd, int mode, int *wstatus, char **env)
 {
