@@ -3,58 +3,73 @@
 #define buffsize 4096
 
 /**
- * cmd_to_arg- splits a str into the differents commands
- * Return: pointer to the array of commands, NULL otherwise
+ * cmds_inter- reads input andtrans forms it into a list
+ * Return: list of commands
  */
-char **cmd_to_arg(void)
+l_node *cmds_inter()
 {
-	int	wc, i;
-	ssize_t	len;
-	char	buff[buffsize], **cmds;
-	wl_t	*l, *aux;
+	char	buf[buffsize];
+	l_node	*l = NULL;
 
-	len = read(STDIN_FILENO, buff, buffsize);
-	if (len == -1)
-		return (NULL);
-	l = create_list(buff);
-	if (!l)
-		return (NULL);
-	wc = words_counter(l);
-	cmds = malloc(sizeof(char *) * (wc + 1));
-	if (!cmds)
-	{
-		free_list(l, 1);
-		return (NULL);
-	}
-	aux = l;
-	for (i = 0; i < wc; i++)
-	{
-		cmds[i] = aux->word;
-		aux = aux->next;
-	}
-	cmds[i] = NULL;
-	free_list(l, 0);
-	return (cmds);
+	read(STDIN_FILENO, buf, buffsize);
+	l = command_str(buf);
+	return (l);
 }
 
 /**
- * free_cmds- frees the commands
- * @cmds: list of commands
- * Return: NULL
+ * args_arr- makes an argv
+ * @l: list input
+ * Return: argv
  */
-char **free_cmds(char **cmds)
+char **args_arr(l_node *l)
 {
-	int	i = 0;
+	int	amount, i;
+	char	**args = NULL;
+	l_node	*aux = NULL;
 
-	if (cmds)
+	amount = node_count(l);
+	args = malloc(sizeof(char **) * (amount + 1));
+	if (!args)
+		return (NULL);
+	aux = l;
+	for (i = 0; i < amount; i++)
 	{
-		while (cmds[i] != NULL)
-		{
-			free(cmds[i]);
-			i++;
-		}
-		free(cmds[i]);
-		free(cmds);
+		args[i] = aux->word;
+		aux = aux->next;
 	}
-	return (NULL);
+	args[i] = NULL;
+	free_list(l, 0);
+	return (args);
+}
+
+/**
+ * free_args- frees args
+ * @args: args to be freed
+ * Return: void
+ */
+void free_args(char **args)
+{
+	int	i;
+
+	if (args)
+	{
+		for (i = 0; args[i]; i++)
+			free(args[i]);
+		free(args[i]);
+		free(args);
+	}
+}
+
+/**
+ * print_args- prints array of args
+ * @args: array of args
+ * Return: void
+ */
+void print_args(char **args)
+{
+	int	i;
+
+	if (args)
+		for (i = 0; args[i]; i++)
+			printf("%s\n", args[i]);
 }
