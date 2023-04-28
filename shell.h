@@ -1,6 +1,7 @@
 #ifndef SHELL_H
 #define SHELL_H
 
+
 /*---->    Included Libraries    <----*/
 #include <sys/wait.h>
 
@@ -22,35 +23,27 @@
  */
 typedef struct word_list
 {
-	char *word;
-	int len;
-	struct word_list *next;
+        char *word;
+        struct word_list *next;
 } l_node;
 
 
 /*---->     Prototypes     <----*/
 
-/* _simple_shell.c */
-int main(int ac, char **av, char **env);
-int check_builtin(char ***cmds, int pos);
+/* cmds.c */
+l_node *cmds_inter();
+char **args_arr(l_node *l);
+void free_args(char **args);
+void print_args(char **args);
 
-/* aux_func.c */
-char ***cmd_to_arg(void);
-char ***free_cmds(char ***cmds);
+/* list_commands.c */
+l_node *command_str(char *buf);
+l_node *args_str(char *buf);
+void add_end(l_node *l, l_node *a);
 
-/* err.c */
-void err_han(char *s1, char *s2);
-
-/* built_in.c */
-void exit(int val);
-void print_env(char **env);
-
-/* lowa.c */
-l_node *create_list(char *str, int *pos);
-
-/* lowb.c */
+/* list_aux.c */
 void *free_list(l_node *l, int flag);
-int words_counter(l_node *l);
+int node_count(l_node *l);
 void print_list(l_node *l);
 
 #endif
