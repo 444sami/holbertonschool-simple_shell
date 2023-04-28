@@ -7,7 +7,7 @@
  */
 l_node *command_str(char *buf)
 {
-	int	i = 0, f, k, len;
+	int	i = 0, f, k = 0, len;
 	l_node	*l = NULL, *aux = NULL;
 
 	if (!buf)
