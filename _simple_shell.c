@@ -9,7 +9,7 @@
  */
 int main(int ac, char **av, char **env)
 {
-	int	mode, wstatus, flag = 1;
+	int	mode, wstatus;
 	char	**cmd = NULL;
 	l_node	*cmds = NULL, *aux = NULL, *argv = NULL;
 
@@ -29,11 +29,12 @@ int main(int ac, char **av, char **env)
 			{
 				argv = args_str(aux->word);
 				cmd = args_arr(argv);
-				if (flag)
-					print_args(cmd);
-				flag = 0;
-				exe_cmd(cmd, mode, &wstatus, env);
+				if  (aux->next)
+					exe_cmd(cmd, 1, &wstatus, env);
+				else
+					exe_cmd(cmd, mode, &wstatus, env);
 				free_args(cmd);
+				cmd = NULL;
 				aux = aux->next;
 			}
 			free_list(cmds, 1);
@@ -53,12 +54,9 @@ int main(int ac, char **av, char **env)
 void exe_cmd(char **cmd, int mode, int *wstatus, char **env)
 {
 	if (cmd)
-	{
 		if(!access(cmd[0], F_OK))
 		{
 			if (!mode || ((fork()) ? (!wait(wstatus)) : 1))
 				execve(cmd[0], cmd, env);
 		}
-		free_args(cmd);
-	}
 }
