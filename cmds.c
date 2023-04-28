@@ -8,7 +8,7 @@
  */
 l_node *cmds_inter()
 {
-	int 	i;
+	int	i;
 	char	buf[buffsize];
 	l_node	*l = NULL;
 
