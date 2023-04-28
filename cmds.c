@@ -8,10 +8,13 @@
  */
 l_node *cmds_inter()
 {
+	int 	i;
 	char	buf[buffsize];
 	l_node	*l = NULL;
 
-	read(STDIN_FILENO, buf, buffsize);
+	for (i = 0; i < buffsize; i++)
+		buf[i] = '\0';
+	read(0, buf, buffsize);
 	l = command_str(buf);
 	return (l);
 }
