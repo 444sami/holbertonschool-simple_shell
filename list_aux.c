@@ -12,7 +12,7 @@ void *free_list(l_node *l, int flag)
 	{
 		free_list(l->next, flag);
 		if (flag)
-			free(l->word);
+			free(l->str);
 		free(l);
 	}
 	return (NULL);
@@ -40,7 +40,7 @@ void print_list(l_node *l)
 {
 	if (l)
 	{
-		printf("%s\n", l->word);
+		printf("%s\n", l->str);
 		print_list(l->next);
 	}
 }
