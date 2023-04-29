@@ -9,14 +9,13 @@
  */
 int main(int ac, char **av, char **env)
 {
-	int	mode, wstatus;
+	int	mode;
 	char	**cmd = NULL;
 	l_node	*cmds = NULL, *aux = NULL, *argv = NULL;
 
 	(void)ac;
 	(void)av;
 	(void)env;
-	(void)wstatus;
 	mode = isatty(STDIN_FILENO);
 	do {
 		if (mode)
@@ -27,12 +26,12 @@ int main(int ac, char **av, char **env)
 			aux = cmds;
 			while (aux)
 			{
-				argv = args_str(aux->word);
+				argv = str_to_ll(aux->str, ' ');
 				cmd = args_arr(argv);
 				if  (aux->next)
-					exe_cmd(cmd, 1, &wstatus, env);
+					exe_cmd(cmd, 1, env);
 				else
-					exe_cmd(cmd, mode, &wstatus, env);
+					exe_cmd(cmd, mode, env);
 				free_args(cmd);
 				cmd = NULL;
 				aux = aux->next;
@@ -47,16 +46,23 @@ int main(int ac, char **av, char **env)
  * exe_cmd- executes the command passed
  * @cmd: command
  * @mode: interactive or not
- * @wstatus: for wait function
  * @env: environ
  * Return: void
  */
-void exe_cmd(char **cmd, int mode, int *wstatus, char **env)
+void exe_cmd(char **cmd, int mode, char **env)
 {
+	int	wstatus;
+	char	*pc = NULL, *str = NULL;
+
+	(void)pc;
+	(void)str;
 	if (cmd)
+	{
+		str = path_check(cmd[0]);
 		if (!access(cmd[0], F_OK))
 		{
-			if (!mode || ((fork()) ? (!wait(wstatus)) : 1))
+			if (!mode || ((fork()) ? (!wait(&wstatus)) : 1))
 				execve(cmd[0], cmd, env);
 		}
+	}
 }
