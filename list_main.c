@@ -15,9 +15,7 @@ l_node *str_to_ll(char *buf, char dem)
 		return (NULL);
 	while (buf[i] != '\0')
 	{
-		if (buf[i] <= 32)
-			i++;
-		else
+		if (buf[i] > 32 && buf[i] != dem)
 		{
 			f = i;
 			while (buf[f] != '\0' && buf[f] != dem)
@@ -42,6 +40,8 @@ l_node *str_to_ll(char *buf, char dem)
 			else
 				add_end(l, aux);
 		}
+		else
+			i++;
 	}
 	return (l);
 }
