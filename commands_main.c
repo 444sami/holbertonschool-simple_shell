@@ -15,7 +15,7 @@ l_node *cmds_inter()
 	for (i = 0; i < buffsize; i++)
 		buf[i] = '\0';
 	read(STDIN_FILENO, buf, buffsize);
-	l = command_str(buf);
+	l = str_to_ll(buf, '\n');
 	return (l);
 }
 
@@ -44,6 +44,10 @@ char **args_arr(l_node *l)
 	free_list(l, 0);
 	return (args);
 }
+
+/**
+ */
+
 
 /**
  * free_args- frees args
