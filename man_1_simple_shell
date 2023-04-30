@@ -1,31 +1,98 @@
 hsh - Linux manual page
 
-PROLOG | NAME | SYNOPSIS | DESCRIPTION | OPTIONS | OPERANDS | STDIN | INPUT FILES | ENVIRONMENT VARIABLES |
+PROLOG | NAME | SYNOPSIS | DESCRIPTION | OPTIONS | OPERANDS | STDIN |
+INPUT FILES | ENVIRONMENT VARIABLES | STDIN | STDOUT | STDERR |
+OUTPUT FILES | USAGE | EXAMPLES | BUGS | FUTURE DIRECTIONS | COPYRIGHT
+
 
 HSH			--> Programmer's Manual <--			HSH
 
+
 PROLOG
 
-	This manual page is for a Holberton School project "Basic shell" that is about building your own command interpreter
+	This manual page is for a Holberton School project "Basic shell" that
+	is about building your own command interpreter.
 
 NAME
-
 	hsh - holberton shell, command language interpreter
 
 SYNOPSIS
-
 	./hsh
 
 DESCRIPTION
-
-	The hsh utility is a command language interpreter that sall execute commands read from a command line string or a specified file
+	The hsh utility is a command language interpreter that sall execute
+	commands read from a command line string or a specified file.
 
 OPTIONS
-
 	This hsh version doesn't support parameters.
 
 OPERANDS
-
 	This hsh version doesn-t support operands.
 
+STDIN
+	The shell allows the terminal, texts or files as input.
+	When more than a command, which each may contain or not arguments, the
+	shell will break the input in such way each command is executed with
+	it's corresponding arguments.
 
+STDOUT
+	Produces no ouput, only on failure. See STDERR section.
+
+STDERR
+	Standard error is used for diagnostic messages.
+	e.g.	$ sdf
+		./hsh: 1: sdf: not found
+
+OUTPUT FILES
+	This program does't produce any output file.
+
+USAGE
+	1. Interactive Mode
+		./hsh
+
+	2. Non-Interactive Mode
+		echo "command and arguments" | ./hsh
+			or
+		cat <filename> | ./hsh
+
+EXAMPLES
+	1. Interactive Mode
+		$ ls
+		<display files and directories inside the pwd>
+		$ cat <filename>
+		<display the content of the file>
+		$ exit
+			# end of shell
+
+	2. Non-Interactive Mode
+		echo "ls" | ./hsh
+		<display files and directories inside the pwd>
+			# end of shell
+		cat <filename> | ./hsh
+			if <filename> content = "ls\nls"
+		<display files and directories inside the pwd>
+		<display files and directories inside the pwd>
+			# end of shell
+
+	Notes
+		To send more than one command to the shell it's necessary to
+		write them into a file and pipe into the shell like in the
+		second example of non-interactive mode.
+
+BUGS
+	To inform about bugs contact Holberton School Uruguay.
+
+	List of Bugs
+		In Interactive Mode
+			$ cat
+				# stays in infinite loop, doesn't take next
+				input as argument
+
+FUTURE DIRECTIONS
+	There are no plans of expanding the shell functioning. This might
+	change in the future.
+
+COPYRIGHT
+	This program has no Copyright, it's free to use by anyone.
+
+Holberton                           2023                                HSH
