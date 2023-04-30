@@ -9,35 +9,29 @@ void path_remake(l_node *list)
 {
 	int	len = 0, i;
 	char	*str = NULL, *path = NULL;
-	l_node	*aux = NULL;
 
 	if (list)
 	{
-		aux = list;
-		while (aux)
+		if (list->str[0] != '/')
 		{
-			if (aux->str[0] != '/')
+			while (list->str[len])
+				len++;
+			str = malloc(sizeof(char) * (len + 2));
+			if (str)
 			{
-				while (aux->str[len])
-					len++;
-				str = malloc(sizeof(char) * (len + 2));
-				if (str)
+				str[0] = '/';
+				for (i = 0; i < len; i++)
+					str[i + 1] = list->str[i];
+				str[i + 1] = '\0';
+				path = path_uni(str);
+				if (path)
 				{
-					str[0] = '/';
-					for (i = 0; i < len; i++)
-						str[i + 1] = aux->str[i];
-					str[i + 1] = '\0';
-					path = path_uni(str);
-					if (path)
-					{
-						free(aux->str);
-						aux->str = path;
-					}
+					free(list->str);
+					list->str = path;
 				}
-				free(str);
-				str = NULL;
 			}
-			aux = aux->next;
+			free(str);
+			str = NULL;
 		}
 	}
 }

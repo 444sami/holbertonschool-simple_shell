@@ -15,13 +15,14 @@ int main(void)
 		if (mode)
 			write(STDOUT_FILENO, "$ ", 2);
 		cmds = cmds_inter();
-		path_remake(cmds);
 		if (cmds)
 		{
 			aux = cmds;
 			while (aux)
 			{
 				argv = str_to_ll(aux->str, ' ');
+				printf("check0");
+				path_remake(argv);
 				cmd = args_arr(argv);
 				if (aux->next)
 					exe_cmd(cmd, 1);
