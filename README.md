@@ -16,17 +16,18 @@
 <h2> <strong> Usage </strong> </h2>
 <h3> Non-Interactive Mode </h3>
 <p>
-* <pre><code> echo "command" | ./hsh </code></pre>
-* <pre><code> cat "filename" | ./hsh </code></pre>
+<pre><code> echo "command" | ./hsh </code></pre>
+<pre><code> cat "filename" | ./hsh </code></pre>
 </p>
 <h3> Interactive Mode </h3>
 <p>
-* <pre><code> ./hsh </code></pre>
+<pre><code> ./hsh </code></pre>
 </p>
 
-<h2>
-        <strong>Requirements</strong>
-</h2>
+
+
+<h1>Making the Project</h1>
+<h2><strong>Requirements</strong></h2>
 <p>This project has the following requirements:
 
 * Allowed editors: vi, vim, emacs
