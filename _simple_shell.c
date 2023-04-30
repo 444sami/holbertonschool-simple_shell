@@ -21,7 +21,6 @@ int main(void)
 			while (aux)
 			{
 				argv = str_to_ll(aux->str, ' ');
-				printf("check0");
 				path_remake(argv);
 				cmd = args_arr(argv);
 				if (aux->next)
@@ -42,15 +41,13 @@ int main(void)
  * exe_cmd- executes the command passed
  * @cmd: command
  * @mode: interactive or not
+ * @cmdo: original command
  * Return: void
  */
 void exe_cmd(char **cmd, int mode)
 {
 	int	wstatus;
-	char	*pc = NULL, *str = NULL;
 
-	(void)pc;
-	(void)str;
 	if (cmd)
 	{
 		if (!access(cmd[0], F_OK))
@@ -58,5 +55,7 @@ void exe_cmd(char **cmd, int mode)
 			if (!mode || ((fork()) ? (!wait(&wstatus)) : 1))
 				execve(cmd[0], cmd, environ);
 		}
+		else
+			fprintf(stderr, "./hsh: 1: %s: not found\n", cmd[0]);
 	}
 }
