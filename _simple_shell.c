@@ -34,7 +34,7 @@ int main(void)
 			free_list(cmds, 1);
 		}
 	} while (mode);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 /**
@@ -56,6 +56,11 @@ void exe_cmd(char **cmd, int mode)
 				execve(cmd[0], cmd, environ);
 		}
 		else
-			fprintf(stderr, "./hsh: 1: %s: not found\n", cmd[0]);
+		{
+			if (check_built(cmd[0]))
+			{
+				fprintf(stderr, "./hsh: 1: %s: not found\n", cmd[0]);
+			}
+		}
 	}
 }

@@ -36,6 +36,10 @@ extern char **environ;
 /* _simple_shell.c */
 void exe_cmd(char **cmd, int mode);
 
+/* built_in.c */
+int check_built(char *cmd);
+void env_imp(void);
+
 /* path_main.c */
 void path_remake(l_node *list);
 char *path_uni(char *str);
