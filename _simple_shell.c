@@ -2,9 +2,6 @@
 
 /**
  * main- runs the shell
- * @ac: amount of arguments
- * @av: list of arguments
- * @env: environment variables
  * Return: 0 on success, non-zero otherwise
  */
 int main(void)

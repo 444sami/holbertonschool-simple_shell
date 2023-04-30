@@ -44,6 +44,3 @@ char **args_arr(l_node *l)
 	free_list(l, 0);
 	return (args);
 }
-
-/**
- */
