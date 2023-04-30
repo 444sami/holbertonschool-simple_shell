@@ -58,9 +58,9 @@ void exe_cmd(char **cmd, int mode, l_node *cmds)
 		}
 		else
 		{
-			errno = 127;
 			if (check_built(cmd, cmds))
 			{
+				errno = 127;
 				fprintf(stderr, "./hsh: 1: %s: not found\n", cmd[0]);
 			}
 		}
