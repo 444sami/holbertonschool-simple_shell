@@ -15,7 +15,7 @@ int check_built(char **cmd, l_node *cmds)
 	}
 	else if (!strcmp(cmd[0], "exit"))
 	{
-		exit_imp(0, cmd, cmds);
+		exit_imp(cmd, cmds);
 		return (0);
 	}
 	return (1);
@@ -35,10 +35,14 @@ void env_imp(void)
 }
 
 /**
+ * exit_imp- exits the current ejecution
+ * @cmd: array of command and arguments to free
+ * @cmds: list of commands and arguments to free
+ * Return: void
  */
-void exit_imp(int status, char **cmd, l_node *cmds)
+void exit_imp(char **cmd, l_node *cmds)
 {
 	free_args(cmd);
 	free_list(cmds, 1);
-	_exit(status);
+	_exit(errno);
 }

@@ -34,7 +34,7 @@ int main(void)
 			free_list(cmds, 1);
 		}
 	} while (mode);
-	return (EXIT_SUCCESS);
+	return (errno);
 }
 
 /**
