@@ -37,10 +37,13 @@ char **args_arr(l_node *l)
 	aux = l;
 	for (i = 0; i < amount; i++)
 	{
-		args[i] = aux->word;
+		args[i] = aux->str;
 		aux = aux->next;
 	}
 	args[i] = NULL;
 	free_list(l, 0);
 	return (args);
 }
+
+/**
+ */
