@@ -48,8 +48,11 @@ void exe_cmd(char **cmd, int mode, l_node *cmds)
 {
 	int	wstatus;
 
+	errno = 0;
 	if (cmd)
 	{
+		if (check_built(cmd, cmds))
+		{}
 		if (!access(cmd[0], F_OK))
 		{
 			if (!mode || ((fork()) ? (!wait(&wstatus)) : 1))
@@ -58,11 +61,8 @@ void exe_cmd(char **cmd, int mode, l_node *cmds)
 		}
 		else
 		{
-			if (check_built(cmd, cmds))
-			{
-				errno = 127;
-				fprintf(stderr, "./hsh: 1: %s: not found\n", cmd[0]);
-			}
+			errno = 127;
+			fprintf(stderr, "./hsh: 1: %s: not found\n", cmd[0]);
 		}
 	}
 }
