@@ -34,11 +34,12 @@ extern char **environ;
 /*---->     Prototypes     <----*/
 
 /* _simple_shell.c */
-void exe_cmd(char **cmd, int mode);
+void exe_cmd(char **cmd, int mode, l_node *cmds);
 
 /* built_in.c */
-int check_built(char *cmd);
+int check_built(char **cmd, l_node *cmds);
 void env_imp(void);
+void exit_imp(int status, char **cmd, l_node *cmds);
 
 /* path_main.c */
 void path_remake(l_node *list);

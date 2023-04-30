@@ -24,9 +24,9 @@ int main(void)
 				path_remake(argv);
 				cmd = args_arr(argv);
 				if (aux->next)
-					exe_cmd(cmd, 1);
+					exe_cmd(cmd, 1, cmds);
 				else
-					exe_cmd(cmd, mode);
+					exe_cmd(cmd, mode, cmds);
 				free_args(cmd);
 				cmd = NULL;
 				aux = aux->next;
@@ -41,10 +41,10 @@ int main(void)
  * exe_cmd- executes the command passed
  * @cmd: command
  * @mode: interactive or not
- * @cmdo: original command
+ * @cmds: list of commands
  * Return: void
  */
-void exe_cmd(char **cmd, int mode)
+void exe_cmd(char **cmd, int mode, l_node *cmds)
 {
 	int	wstatus;
 
@@ -57,7 +57,7 @@ void exe_cmd(char **cmd, int mode)
 		}
 		else
 		{
-			if (check_built(cmd[0]))
+			if (check_built(cmd, cmds))
 			{
 				fprintf(stderr, "./hsh: 1: %s: not found\n", cmd[0]);
 			}
