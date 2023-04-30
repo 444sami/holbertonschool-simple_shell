@@ -9,6 +9,14 @@
 <p>hsh (Holberton SHell) is a command interpreter, a program that takes commands from the standard input, a file or a command line string, and gives them to the operating system to perform.</p>
 
  <h2>
+
+ <h2>
+	<strong>Instalation</strong>
+</h2>
+<p>
+* Clone the repository <pre><code> git clone https://github.com/Pablo-Laborde/holbertonschool-simple_shell.git </code></pre>
+* Compile <pre><code> gcc *.c -o hsh </code></pre>
+</p>
         <strong>Requirements</strong>
 </h2>
 <p>This project has the following requirements:
