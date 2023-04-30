@@ -78,8 +78,19 @@ $</code></pre></p>
  </h2>
  <p>Files we created for this project:
 
-* Documentation: README.md, man_1_simple_shell, AUTHORS.
-* Shell: _simple_shell.c
-* Auxiliar functions: </p>
+  Documentation:
+	* README.md, man_1_simple_shell, AUTHORS.
+  Shell:
+	* _simple_shell.c
+  Header:
+	* shell.h
+  Auxiliar functions:
+	* built_in.c
+	* path_main.c
+	* commands_main.c
+	* commands_aux.c
+	* list_main.c
+	* list_aux.c
+</p>
 <hr>
 Samara González, Pablo Laborde. Cohort 20.
