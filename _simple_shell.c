@@ -7,20 +7,18 @@
  * @env: environment variables
  * Return: 0 on success, non-zero otherwise
  */
-int main(int ac, char **av, char **env)
+int main(void)
 {
 	int	mode;
 	char	**cmd = NULL;
 	l_node	*cmds = NULL, *aux = NULL, *argv = NULL;
 
-	(void)ac;
-	(void)av;
-	(void)env;
 	mode = isatty(STDIN_FILENO);
 	do {
 		if (mode)
 			write(STDOUT_FILENO, "$ ", 2);
 		cmds = cmds_inter();
+		path_remake(cmds);
 		if (cmds)
 		{
 			aux = cmds;
@@ -28,10 +26,10 @@ int main(int ac, char **av, char **env)
 			{
 				argv = str_to_ll(aux->str, ' ');
 				cmd = args_arr(argv);
-				if  (aux->next)
-					exe_cmd(cmd, 1, env);
+				if (aux->next)
+					exe_cmd(cmd, 1);
 				else
-					exe_cmd(cmd, mode, env);
+					exe_cmd(cmd, mode);
 				free_args(cmd);
 				cmd = NULL;
 				aux = aux->next;
@@ -46,10 +44,9 @@ int main(int ac, char **av, char **env)
  * exe_cmd- executes the command passed
  * @cmd: command
  * @mode: interactive or not
- * @env: environ
  * Return: void
  */
-void exe_cmd(char **cmd, int mode, char **env)
+void exe_cmd(char **cmd, int mode)
 {
 	int	wstatus;
 	char	*pc = NULL, *str = NULL;
@@ -58,11 +55,10 @@ void exe_cmd(char **cmd, int mode, char **env)
 	(void)str;
 	if (cmd)
 	{
-		str = path_check(cmd[0]);
 		if (!access(cmd[0], F_OK))
 		{
 			if (!mode || ((fork()) ? (!wait(&wstatus)) : 1))
-				execve(cmd[0], cmd, env);
+				execve(cmd[0], cmd, environ);
 		}
 	}
 }
