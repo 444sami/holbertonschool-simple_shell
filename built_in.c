@@ -10,11 +10,13 @@ int check_built(char **cmd, l_node *cmds)
 {
 	if (!strcmp(cmd[0], "env"))
 	{
+		errno = 0;
 		env_imp();
 		return (0);
 	}
 	else if (!strcmp(cmd[0], "exit"))
 	{
+		errno = 0;
 		exit_imp(cmd, cmds);
 		return (0);
 	}
