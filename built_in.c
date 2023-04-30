@@ -16,7 +16,6 @@ int check_built(char **cmd, l_node *cmds)
 	}
 	else if (!strcmp(cmd[0], "exit"))
 	{
-		errno = 0;
 		exit_imp(cmd, cmds);
 		return (0);
 	}
