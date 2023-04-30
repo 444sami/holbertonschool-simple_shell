@@ -53,7 +53,7 @@ void exe_cmd(char **cmd, int mode, l_node *cmds)
 		if (!access(cmd[0], F_OK))
 		{
 			if (!mode || ((fork()) ? (!wait(&wstatus)) : 1))
-				if (!execve(cmd[0], cmd, environ))
+				if (execve(cmd[0], cmd, environ))
 					errno = 2;
 		}
 		else
