@@ -11,7 +11,6 @@ int check_built(char **cmd, l_node *cmds, int *status)
 {
 	if (!strcmp(cmd[0], "env"))
 	{
-		errno = 0;
 		env_imp();
 		return (0);
 	}
