@@ -6,11 +6,12 @@
  */
 int main(void)
 {
-	int	mode;
+	int	mode, status = 0;
 	char	**cmd = NULL;
 	l_node	*cmds = NULL, *aux = NULL, *argv = NULL;
 
 	mode = isatty(STDIN_FILENO);
+	status = 0;
 	do {
 		if (mode)
 			write(STDOUT_FILENO, "$ ", 2);
@@ -24,9 +25,9 @@ int main(void)
 				path_remake(argv);
 				cmd = args_arr(argv);
 				if (aux->next)
-					exe_cmd(cmd, 1, cmds);
+					exe_cmd(cmd, 1, cmds, &status);
 				else
-					exe_cmd(cmd, mode, cmds);
+					exe_cmd(cmd, mode, cmds, &status);
 				free_args(cmd);
 				cmd = NULL;
 				aux = aux->next;
@@ -34,7 +35,7 @@ int main(void)
 			free_list(cmds, 1);
 		}
 	} while (mode);
-	return (errno);
+	return (status);
 }
 
 /**
@@ -42,27 +43,28 @@ int main(void)
  * @cmd: command
  * @mode: interactive or not
  * @cmds: list of commands
+ * @status: exit status
  * Return: void
  */
-void exe_cmd(char **cmd, int mode, l_node *cmds)
+void exe_cmd(char **cmd, int mode, l_node *cmds, int *status)
 {
 	int	wstatus;
 
-	errno = 0;
 	if (cmd)
 	{
-		if (check_built(cmd, cmds))
-		{}
 		if (!access(cmd[0], F_OK))
 		{
 			if (!mode || ((fork()) ? (!wait(&wstatus)) : 1))
 				if (execve(cmd[0], cmd, environ))
-					errno = 2;
+					*status = 2;
 		}
 		else
 		{
-			errno = 127;
-			fprintf(stderr, "./hsh: 1: %s: not found\n", cmd[0]);
+			if (check_built(cmd, cmds, status))
+			{
+				*status = 127;
+				fprintf(stderr, "./hsh: 1: %s: not found\n", cmd[0]);
+			}
 		}
 	}
 }

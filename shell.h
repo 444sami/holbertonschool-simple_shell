@@ -29,17 +29,16 @@ typedef struct word_list
 
 /*---->     Variables    <----*/
 extern char **environ;
-extern int errno;
 
 /*---->     Prototypes     <----*/
 
 /* _simple_shell.c */
-void exe_cmd(char **cmd, int mode, l_node *cmds);
+void exe_cmd(char **cmd, int mode, l_node *cmds, int *status);
 
 /* built_in.c */
-int check_built(char **cmd, l_node *cmds);
+int check_built(char **cmd, l_node *cmds, int *status);
 void env_imp(void);
-void exit_imp(char **cmd, l_node *cmds);
+void exit_imp(char **cmd, l_node *cmds, int *status);
 
 /* path_main.c */
 void path_remake(l_node *list);
