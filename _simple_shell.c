@@ -56,7 +56,7 @@ void exe_cmd(char **cmd, int mode, l_node *cmds, int *status)
 		{
 			if (!mode || ((fork()) ? (!wait(&wstatus)) : 1))
 				execve(cmd[0], cmd, environ);
-			*status = errno;
+			*status = 2;
 		}
 		else
 		{
